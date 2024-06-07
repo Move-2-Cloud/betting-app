@@ -10,19 +10,18 @@ services:
       POSTGRES_DB: sports-betting
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./init:/data/init-data.sql
+      - ./data:/docker-entrypoint-initdb.d
 
   pgadmin:
     image: dpage/pgadmin4:latest
-    restart: always
+    restart: always    
     environment:
-      PGADMIN_DEFAULT_SERVER: postgres
-      PGADMIN_DEFAULT_SERVER_HOST: postgres
-      PGADMIN_DEFAULT_SERVER_PORT: 5432
-      PGADMIN_DEFAULT_SERVER_USERNAME: pixelz
-      PGADMIN_DEFAULT_SERVER_PASSWORD: password
+      PGADMIN_DEFAULT_EMAIL: v@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password
     ports:
-      - "5050:5050"
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
 
   frontend:
     build:
@@ -42,3 +41,4 @@ services:
 
 volumes:
   postgres_data:
+  pgadmin_data:
