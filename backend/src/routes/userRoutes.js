@@ -34,6 +34,9 @@ router.post('/signup', async (req, res) => {
       money: 0
     });
 
+    // Send a response back to the client
+    res.status(201).json({ message: 'User created successfully'});
+
   } catch (error) {
     res.status(500).json({ error: 'Erreur lors de la création de l’utilisateur.' });
   }
