@@ -1,0 +1,11 @@
+# Dépendances
+/node_modules
+
+# Environnement
+.env
+
+# Fichiers de journalisation
+*.log
+
+# Autres fichiers et dossiers spécifiques à l'environnement qui ne devraient pas être suivis
+.DS_Store
