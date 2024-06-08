@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../../config';
 
 function DepositForm() {
   const [userData, setUserData] = useState({
@@ -18,7 +19,7 @@ function DepositForm() {
 
   const handleDeposit = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/users/deposit', {
+      const response = await fetch(`${API_BASE_URL}/users/deposit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

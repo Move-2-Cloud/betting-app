@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../../config';
 import './SignupForm.css';
 
 function SignupForm() {
@@ -32,9 +33,7 @@ function SignupForm() {
       return;
     }
 
-    const signUpEndpoint = 'http://localhost:8080/api/users/signup';
-
-    fetch(signUpEndpoint, {
+    fetch(`${API_BASE_URL}/users/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
