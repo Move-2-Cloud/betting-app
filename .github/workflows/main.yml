@@ -59,8 +59,3 @@ jobs:
 
       # - name: Push to Registry
       #   run: docker push "${{ env.REGISTRY_URL }}"/dam-api:latest
-
-            ignore-unfixed: true
-            vuln-type: 'os,library'
-            severity: 'CRITICAL,HIGH'
- 
