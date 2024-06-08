@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import { API_BASE_URL } from '../../config';
 
 function LoginForm() {
   const [loginData, setLoginData] = useState({
@@ -21,10 +22,9 @@ function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const loginEndpoint = 'http://localhost:8080/api/auth/login';
-
+   
     try {
-      const response = await fetch(loginEndpoint, {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
