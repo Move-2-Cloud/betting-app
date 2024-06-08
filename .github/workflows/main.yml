@@ -8,7 +8,22 @@ on:
 
 jobs:
 
+  sonarqube:
+      name: SonarQube
+      runs-on: ubuntu-latest
+          
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+        - name: SonarQube Scan
+          uses: sonarsource/sonarqube-scan-action@master
+          env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
   build-front:
+    needs: [sonarqube]
     name: Build frontend
     runs-on: ubuntu-latest
 
@@ -32,6 +47,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
   build-back:
+    needs: [sonarqube]
     name: Build backend
     runs-on: ubuntu-latest
   
@@ -59,17 +75,3 @@ jobs:
 
       # - name: Push to Registry
       #   run: docker push "${{ env.REGISTRY_URL }}"/dam-api:latest*
-
-  sonarqube:
-      name: SonarQube Integration
-      runs-on: ubuntu-latest
-          
-      steps:
-        - uses: actions/checkout@v2
-          with:
-            fetch-depth: 0
-        - name: SonarQube Scan
-          uses: sonarsource/sonarqube-scan-action@master
-          env:
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
