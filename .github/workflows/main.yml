@@ -1,0 +1,44 @@
+name: Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+  
+
+jobs:
+
+  build-front:
+    name: Build frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build Docker Image
+        run: docker buildx build . --file ./frontend/Dockerfile 
+
+      # - name: Login to Registry
+      #   run: echo "${{ env.TOKEN }}" | docker login "${{ env.REGISTRY_URL }}" -u "${{ env.REGISTRY_USER }}" --password-stdin
+
+      # - name: Push to Registry
+      #   run: docker push "${{ env.REGISTRY_URL }}"/dam-front:latest
+
+
+  build-back:
+    name: Build backend
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Build Docker Image
+        run: docker buildx build . --file ./backend/Dockerfile 
+
+      # - name: Login to Registry
+      #   run: echo "${{ env.TOKEN }}" | docker login "${{ env.REGISTRY_URL }}" -u "${{ env.REGISTRY_USER }}" --password-stdin
+
+      # - name: Push to Registry
+      #   run: docker push "${{ env.REGISTRY_URL }}"/dam-api:latest
