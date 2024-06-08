@@ -43,10 +43,10 @@ services:
         DB_USER: ${DB_USER}
         DB_PASS: ${DB_PASS}
         DB_HOST: postgres
-        PORT: 1234
-        JWT_SECRET: djxdkdkkkkkkkkep
+        PORT: ${PORT}
+        JWT_SECRET: ${JWT_SECRET}
     ports:
-      - "8080:1234"
+      - "8080:${PORT}"
 
 volumes:
   postgres_data:
