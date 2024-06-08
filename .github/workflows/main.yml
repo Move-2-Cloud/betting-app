@@ -7,13 +7,12 @@ on:
   
 
 jobs:
-
   sonarqube:
       name: SonarQube
       runs-on: ubuntu-latest
           
       steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v4
           with:
             fetch-depth: 0
         - name: SonarQube Scan
@@ -29,7 +28,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build Docker Image
         run: |
@@ -53,7 +52,7 @@ jobs:
   
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Build Docker Image
         run: |
