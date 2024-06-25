@@ -73,4 +73,4 @@ jobs:
         run: echo "${{ secrets.REGISTRY_PWD }}" | docker login "${{ secrets.REGISTRY_URL }}" -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
 
       - name: Push to Registry
-        run: docker push "${{ secrets.REGISTRY_URL }}"/build-back:latest*
+        run: docker push "${{ secrets.REGISTRY_URL }}"/build-back:latest
