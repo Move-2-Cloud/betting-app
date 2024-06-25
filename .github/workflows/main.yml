@@ -62,7 +62,7 @@ jobs:
       - name: Trivy Security Scan
         uses: aquasecurity/trivy-action@0.20.0
         with:
-          image-ref: 'betting-app-back:latest'
+          image-ref: '"${{ secrets.REGISTRY_URL }}"/betting-app-back:latest'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
