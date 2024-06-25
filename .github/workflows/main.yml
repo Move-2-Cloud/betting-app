@@ -23,7 +23,7 @@ jobs:
 
   build-front:
     needs: [sonarqube]
-    name: Build frontend
+    name: Build & Push frontend
     runs-on: ubuntu-latest
 
     steps:
@@ -56,7 +56,7 @@ jobs:
 
   build-back:
     needs: [sonarqube]
-    name: Build backend
+    name: Build & Push backend
     runs-on: ubuntu-latest
   
     steps:
