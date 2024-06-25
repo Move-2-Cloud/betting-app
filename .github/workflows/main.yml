@@ -57,17 +57,20 @@ jobs:
       - name: Build Docker Image
         run: |
           cd backend
-          docker buildx build -t "${{ secrets.REGISTRY_URL }}"/betting-app-back:latest .
+          docker buildx build -t betting-app-back:latest .
 
       - name: Trivy Security Scan
         uses: aquasecurity/trivy-action@0.20.0
         with:
-          image-ref: '"${{ secrets.REGISTRY_URL }}"/betting-app-back:latest'
+          image-ref: 'betting-app-back:latest'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+
+      - name: Tag docker image
+        run: docker image tag betting-app-back:latest "${{ secrets.REGISTRY_URL }}"/betting-app-back:latest 
 
       - name: Login to Registry
         run: echo "${{ secrets.REGISTRY_PWD }}" | docker login "${{ secrets.REGISTRY_URL }}" -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
