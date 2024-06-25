@@ -57,7 +57,7 @@ jobs:
       - name: Build Docker Image
         run: |
           cd backend
-          docker buildx build -t betting-app-back:latest .
+          docker buildx build -t "${{ secrets.REGISTRY_URL }}"/betting-app-back:latest .
 
       - name: Trivy Security Scan
         uses: aquasecurity/trivy-action@0.20.0
