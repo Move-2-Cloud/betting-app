@@ -69,8 +69,8 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 
-      # - name: Login to Registry
-      #   run: echo "${{ env.TOKEN }}" | docker login "${{ env.REGISTRY_URL }}" -u "${{ env.REGISTRY_USER }}" --password-stdin
+      - name: Login to Registry
+        run: echo "${{ secrets.REGISTRY_PWD }}" | docker login "${{ secrets.REGISTRY_URL }}" -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
 
-      # - name: Push to Registry
-      #   run: docker push "${{ env.REGISTRY_URL }}"/dam-api:latest*
+      - name: Push to Registry
+        run: docker push "${{ secrets.REGISTRY_URL }}"/build-back:latest*
