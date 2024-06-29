@@ -33,7 +33,7 @@ jobs:
       - name: Build Docker Image
         run: |
           cd frontend
-          docker buildx build -t betting-app-front:latest .
+          docker buildx build --build-arg API_BASE_URL=https://api.move2cloud.site/api -t betting-app-front:latest .
           
       - name: Trivy Security Scan
         uses: aquasecurity/trivy-action@0.20.0
