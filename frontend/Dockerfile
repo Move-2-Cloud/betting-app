@@ -21,5 +21,7 @@ FROM nginxinc/nginx-unprivileged:alpine3.19-perl@sha256:76c189fe55e590d223410303
 
 USER nginx
 
+EXPOSE 3000
+
 COPY --chown=nginx:nginx nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --chown=nginx:nginx --from=builder /app/build /usr/share/nginx/html
